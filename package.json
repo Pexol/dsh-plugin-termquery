@@ -1,0 +1,50 @@
+{
+  "name": "dsh-plugin-termquery",
+  "version": "0.1.0",
+  "description": "学习与阅读提效工具：给 DeepSeek Harness 的划词快问宿主插件，通过本地 HTTP 把选中的名词直接投递给 Agent 并读回回答，不抢焦点、不闪屏，附真实 token 压力与会话归档。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "termquery",
+    "selection-query"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*"
+  },
+  "scripts": {
+    "check": "node --check lib/index.js"
+  },
+  "author": "Pexol <Pex200512269@163.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pexol/dsh-plugin-termquery.git"
+  },
+  "homepage": "https://github.com/Pexol/dsh-plugin-termquery#readme",
+  "bugs": {
+    "url": "https://github.com/Pexol/dsh-plugin-termquery/issues"
+  }
+}

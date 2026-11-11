@@ -1,0 +1,7 @@
+# dsh-plugin-termquery bundle patch.
+# Inserts a single host row. The plugin registers /termquery/* loopback routes
+# through ctx.webServer and never touches the GUI or the keyboard.
+
+- insert:
+    - id: termquery
+      name: 'dsh-plugin-termquery'
