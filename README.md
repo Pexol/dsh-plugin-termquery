@@ -93,11 +93,16 @@ curl http://127.0.0.1:<port>/termquery/health
 | 方法 | 路径 | 说明 |
 |---|---|---|
 | GET | `/health` | 健康检查 + 服务自检 |
-| GET | `/sessions` | 列出**运行中**的 Agent / 会话 |
+| GET | `/sessions` | 列出持久会话（不激活 Agent） |
+| GET | `/models` | 列出可用模型（provider / model / 推理档） |
+| GET | `/model-info?provider=&model=` | 读取模型能力（上下文 / 输出上限 / 推理档） |
+| POST | `/select-model` | 为会话选定 `provider / model / reasoningEffort` |
 | POST | `/ask` | `{ "sessionId": "...", "text": "..." }` 发送问题 |
 | GET | `/messages?sessionId=&limit=` | 读取最近消息（含助手回复） |
 | GET | `/pressure?sessionId=` | 真实 token 压力 + 上下文窗口 |
 | POST | `/archive` | `{ "sessionId": "..." }` 导出会话备份 JSON |
+
+> **安全说明**：所有路由都套了异常兜底（`safe()`），任何 handler 报错只返回 500，不会终止宿主进程。`/model-info` 调用底层 `resolveModelInfo(provider, model)` **必须同时传入 provider 与 model**——裸调用会抛 `NO_ADAPTER`。
 
 ### 示例
 
