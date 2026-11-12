@@ -93,12 +93,13 @@ curl http://127.0.0.1:<port>/termquery/health
 | 方法 | 路径 | 说明 |
 |---|---|---|
 | GET | `/health` | 健康检查 + 服务自检 |
-| GET | `/sessions` | 列出持久会话（不激活 Agent） |
+| GET | `/sessions?detail=1&limit=` | 会话卡片：标题 / 预览 / 最近时间 / 已绑模型（冷会话经 `inspect()` 读日志派生，带缓存） |
 | GET | `/models` | 列出可用模型（provider / model / 推理档） |
 | GET | `/model-info?provider=&model=` | 读取模型能力（上下文 / 输出上限 / 推理档） |
 | POST | `/select-model` | 为会话选定 `provider / model / reasoningEffort` |
 | POST | `/ask` | `{ "sessionId": "...", "text": "..." }` 发送问题 |
-| GET | `/messages?sessionId=&limit=` | 读取最近消息（含助手回复） |
+| GET | `/messages?sessionId=&limit=` | 最近消息（live 用 `deriveMessages()`，冷会话回落 `inspect()`） |
+| GET | `/events?sessionId=&limit=` | 只读：导出最近会话事件（调试/派生用） |
 | GET | `/pressure?sessionId=` | 真实 token 压力 + 上下文窗口 |
 | POST | `/archive` | `{ "sessionId": "..." }` 导出会话备份 JSON |
 

@@ -1,6 +1,6 @@
 {
   "name": "dsh-plugin-termquery",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "学习与阅读提效工具：给 DeepSeek Harness 的划词快问宿主插件，通过本地 HTTP 把选中的名词直接投递给 Agent 并读回回答，不抢焦点、不闪屏，附真实 token 压力与会话归档。",
   "type": "module",
   "main": "lib/index.js",
